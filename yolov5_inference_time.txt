@@ -1,0 +1,116 @@
+# run detect with different options to check inference speed and accuracy
+yolov5s
+
+# img-size 640
+python detect.py --weights yolov5s.pt --img 640 --source cars.jpg
+detect: weights=['yolov5s.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[640, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 640x480 2 persons, 25 cars, 1 motorcycle, 1 bus, 2 trucks, 73.7ms
+Speed: 2.8ms pre-process, 73.7ms inference, 20.0ms NMS per image at shape (1, 3, 640, 640)
+
+# img-size 640, FP16
+python detect.py --weights yolov5s.pt --img 640 --source cars.jpg --half
+detect: weights=['yolov5s.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[640, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=True, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 640x480 2 persons, 25 cars, 1 motorcycle, 1 bus, 2 trucks, 239.1ms
+Speed: 1.7ms pre-process, 239.1ms inference, 6.4ms NMS per image at shape (1, 3, 640, 640)
+Results saved to runs/detect/exp14
+
+
+# img-size = 320
+python detect.py --weights yolov5s.pt --img 320 --source cars.jpg
+detect: weights=['yolov5s.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[320, 320], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 320x256 1 person, 13 cars, 2 trucks, 71.1ms
+Speed: 2.8ms pre-process, 71.1ms inference, 9.0ms NMS per image at shape (1, 3, 320, 320)
+Results saved to runs/detect/exp9
+
+
+# img-size=320, using half precision FP16
+python detect.py --weights yolov5s.pt --img 320 --source cars.jpg --half
+detect: weights=['yolov5s.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[320, 320], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=True, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5s summary: 213 layers, 7225885 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 320x256 1 person, 13 cars, 2 trucks, 281.1ms
+Speed: 2.1ms pre-process, 281.1ms inference, 8.6ms NMS per image at shape (1, 3, 320, 320)
+Results saved to runs/detect/exp10
+
+
+
+
+yolov5n
+# normal 640
+python detect.py --weights yolov5n.pt --img 640 --source cars.jpg
+detect: weights=['yolov5n.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[640, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5n summary: 213 layers, 1867405 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 640x480 2 persons, 23 cars, 2 buss, 1 truck, 61.8ms
+Speed: 2.6ms pre-process, 61.8ms inference, 6.3ms NMS per image at shape (1, 3, 640, 640)
+Results saved to runs/detect/exp12
+
+# 640, FP16
+python detect.py --weights yolov5n.pt --img 640 --source cars.jpg --half
+detect: weights=['yolov5n.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[640, 640], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=True, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5n summary: 213 layers, 1867405 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 640x480 2 persons, 23 cars, 2 buss, 1 truck, 211.8ms
+Speed: 2.3ms pre-process, 211.8ms inference, 6.8ms NMS per image at shape (1, 3, 640, 640)
+Results saved to runs/detect/exp13
+
+# 320
+python detect.py --weights yolov5n.pt --img 320 --source cars.jpg
+detect: weights=['yolov5n.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[320, 320], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=False, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5n summary: 213 layers, 1867405 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 320x256 13 cars, 2 buss, 49.0ms
+Speed: 1.6ms pre-process, 49.0ms inference, 5.9ms NMS per image at shape (1, 3, 320, 320)
+Results saved to runs/detect/exp15
+
+# 320, FP16
+python detect.py --weights yolov5n.pt --img 320 --source cars.jpg --half
+detect: weights=['yolov5n.pt'], source=cars.jpg, data=data/coco128.yaml, imgsz=[320, 320], conf_thres=0.25, iou_thres=0.45, max_det=1000, device=, view_img=False, save_txt=False, save_conf=False, save_crop=False, nosave=False, classes=None, agnostic_nms=False, augment=False, visualize=False, update=False, project=runs/detect, name=exp, exist_ok=False, line_thickness=3, hide_labels=False, hide_conf=False, half=True, dnn=False, vid_stride=1
+YOLOv5 🚀 v7.0-63-gcdd804d Python-3.8.10 torch-1.12.0a0+2c916ef.nv22.3 CUDA:0 (Xavier, 6846MiB)
+
+Fusing layers... 
+YOLOv5n summary: 213 layers, 1867405 parameters, 0 gradients
+image 1/1 /home/nvidia/Documents/yolov5/cars.jpg: 320x256 13 cars, 2 buss, 222.1ms
+Speed: 1.7ms pre-process, 222.1ms inference, 6.5ms NMS per image at shape (1, 3, 320, 320)
+Results saved to runs/detect/exp16
+
+
+
+
+# convert .pt to tensorrt
+# nano
+nvidia@ubuntu:~/Downloads/tensorrtx/yolov5/build$ sudo ./yolov5 -d yolov5n.engine ../images/
+inference time: 21ms
+inference time: 46ms
+inference time: 31ms
+inference time: 17ms
+inference time: 32ms
+
+# small
+nvidia@ubuntu:~/Downloads/tensorrtx/yolov5/build$ sudo ./yolov5 -d yolov5s.engine ../images/
+inference time: 24ms
+inference time: 35ms
+inference time: 35ms
+inference time: 39ms
+inference time: 24ms
+
