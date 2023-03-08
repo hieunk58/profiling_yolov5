@@ -1,0 +1,151 @@
+uname -m
+// return aarch64
+
+or using below command
+uname -m && cat /etc/*release
+
+aarch64
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.4 LTS"
+# R35 (release), REVISION: 1.0, GCID: 31250864, BOARD: t186ref, EABI: aarch64, DATE: Thu Aug 11 03:40:29 UTC 2022
+NAME="Ubuntu"
+VERSION="20.04.4 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.4 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+
+
+// show installed packages
+sudo apt list --installed
+// remove package
+sudo apt purge package-name
+
+//remove package dependencies by using the following command:
+sudo apt autoremove
+
+
+//fix broken packages
+// install dependencies packages
+sudo apt-get -f install
+// then autoremove
+sudo apt autoremove
+
+
+// yolov5 needs 
+- if using pytorch 1.12 then cuda 11.4 or higher, cudnn 8.2 or higher
+- pytorch 1.10, cuda 11.3 and cudnn 8.2
+
+cudnn libraries are located at /usr/lib/aarch64-linux-gnu
+
+install cuda 11.4, select suitable version
+https://developer.nvidia.com/cuda-11-4-0-download-archive?target_os=Linux&target_arch=arm64-sbsa&Compilation=Native&Distribution=Ubuntu&target_version=20.04&target_type=deb_local
+
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/sbsa/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+
+// after add repo cuda, next we install cuda runtime
+sudo apt-get install --no-install-recommends cuda-runtime-11-4 build-essential cuda-nvcc-11-4 cuda-nvtx-11-4 libcusparse-dev-11-4 libcublas-11-4 libcublas-dev-11-4 libcusolver-dev-11-4
+
+
+cuda-nvtx-11-4: provide libToolExt
+libcusparse-dev-11-4: used when building torchvision
+/home/nvidia/.local/lib/python3.8/site-packages/torch/include/ATen/cuda/CUDAContext.h:6:10: fatal error: cusparse.h: No such file or directory
+    6 | #include <cusparse.h>
+      |          ^~~~~~~~~~~~
+libcublas-11-4
+In file included from /home/nvidia/torchvision/torchvision/csrc/ops/cuda/deform_conv2d_kernel.cu:70:
+/home/nvidia/.local/lib/python3.8/site-packages/torch/include/ATen/cuda/CUDAContext.h:7:10: fatal error: cublas_v2.h: No such file or directory
+    7 | #include <cublas_v2.h>
+
+
+The following additional packages will be installed:
+  cuda-cudart-11-4 cuda-libraries-11-4 cuda-nvrtc-11-4 cuda-toolkit-11-4-config-common cuda-toolkit-11-config-common
+  cuda-toolkit-config-common libcublas-11-4 libcudla-11-4 libcufft-11-4 libcurand-11-4 libcusolver-11-4 libcusparse-11-4 libnpp-11-4
+  
+  
+The following NEW packages will be installed:
+  cuda-cudart-11-4 cuda-libraries-11-4 cuda-nvrtc-11-4 cuda-runtime-11-4 cuda-toolkit-11-4-config-common cuda-toolkit-11-config-common
+  cuda-toolkit-config-common libcublas-11-4 libcudla-11-4 libcufft-11-4 libcurand-11-4 libcusolver-11-4 libcusparse-11-4 libnpp-11-4
+  
+  
+0 upgraded, 14 newly installed, 0 to remove and 287 not upgraded.
+Need to get 632 MB of archives.
+After this operation, 1,763 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+
+
+
+
+// install cudnn later
+for building torchvision: libdnn is enough but for running yololv5 inference libcudnn_ops_infer.so.8 is required
+
+
+
+
+
+// install requirements inside yolov5, except torch and torchvision
+install dateutil used by panda
+pip3 install python-dateutil==2.8.2
+// ParserError was added in version 2.8.1 so 
+from dateutil.parser import ParserError
+ImportError: cannot import name 'ParserError' from 'dateutil.parser' (/usr/lib/python3/dist-packages/dateutil/parser/__init__.py)
+
+
+
+
+wget https://developer.download.nvidia.com/compute/redist/jp/v50/pytorch/torch-1.12.0a0+2c916ef.nv22.3-cp38-cp38-linux_aarch64.whl -O torch-1.12.0a0+2c916ef.nv22.3-cp38-cp38-linux_aarch64.whl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The following NEW packages will be installed:
+  build-essential cuda cuda-12-1 cuda-cccl-12-1 cuda-command-line-tools-12-1
+  cuda-compiler-12-1 cuda-cudart-12-1 cuda-cudart-dev-12-1 cuda-cuobjdump-12-1
+  cuda-cupti-12-1 cuda-cupti-dev-12-1 cuda-cuxxfilt-12-1 cuda-documentation-12-1
+  cuda-driver-dev-12-1 cuda-drivers cuda-drivers-530 cuda-gdb-12-1 cuda-libraries-12-1
+  cuda-libraries-dev-12-1 cuda-nsight-compute-12-1 cuda-nsight-systems-12-1
+  cuda-nvcc-12-1 cuda-nvdisasm-12-1 cuda-nvml-dev-12-1 cuda-nvprune-12-1 cuda-nvrtc-12-1
+  cuda-nvrtc-dev-12-1 cuda-nvtx-12-1 cuda-profiler-api-12-1 cuda-runtime-12-1
+  cuda-sanitizer-12-1 cuda-toolkit-12-1 cuda-toolkit-12-1-config-common
+  cuda-toolkit-12-config-common cuda-toolkit-config-common cuda-tools-12-1
+  cuda-visual-tools-12-1 dctrl-tools dkms dpkg-dev fakeroot g++ g++-9
+  libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libcublas-12-1
+  libcublas-dev-12-1 libcufft-12-1 libcufft-dev-12-1 libcurand-12-1 libcurand-dev-12-1
+  libcusolver-12-1 libcusolver-dev-12-1 libcusparse-12-1 libcusparse-dev-12-1 libnpp-12-1
+  libnpp-dev-12-1 libnvidia-cfg1-530 libnvidia-common-530 libnvidia-compute-530
+  libnvidia-decode-530 libnvidia-encode-530 libnvidia-extra-530 libnvidia-fbc1-530
+  libnvidia-gl-530 libnvjitlink-12-1 libnvjitlink-dev-12-1 libnvjpeg-12-1
+  libnvjpeg-dev-12-1 libnvvm-samples-12-1 libstdc++-9-dev linux-headers-5.4.0-144
+  linux-headers-5.4.0-144-generic linux-headers-generic make nsight-compute-2023.1.0
+  nsight-systems-cli-2023.1.2 nvidia-compute-utils-530 nvidia-dkms-530 nvidia-driver-530
+  nvidia-kernel-common-530 nvidia-kernel-source-530 nvidia-modprobe nvidia-prime
+  nvidia-settings nvidia-utils-530 screen-resolution-extra xserver-xorg-video-nvidia-530
